@@ -35,9 +35,9 @@ class Iso3166
      */
     public function __construct()
     {
-        $this->templateFile = __DIR__ . '/../templates/Iso3166.php';
+        $this->templateFile = __DIR__ . '/../templates/Iso3166Data.txt';
 
-        $this->outputFile = __DIR__ . '/../Iso3166.php';
+        $this->outputFile = __DIR__ . '/../Iso3166Data.php';
 
         $this->encoder = new PHPEncoder;
     }
