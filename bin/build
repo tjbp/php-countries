@@ -1,0 +1,8 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+use \Tjbp\Countries\Build\Iso3166 as Iso3166Builder;
+
+(new Iso3166Builder)->build();

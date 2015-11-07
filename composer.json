@@ -17,8 +17,5 @@
         "riimu/kit-phpencoder": "^2.1",
         "phpunit/phpunit": "^4.8"
     },
-    "scripts": {
-        "post-install-cmd": "Tjbp\\Countries\\Build\\Iso3166::build",
-        "post-update-cmd": "Tjbp\\Countries\\Build\\Iso3166::build"
-    }
+    "bin": ["bin/build"]
 }

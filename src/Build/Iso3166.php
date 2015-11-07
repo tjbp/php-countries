@@ -105,7 +105,7 @@ class Iso3166
      *
      * @return void
      */
-    public function generate()
+    public function build()
     {
         $countries = [];
 
@@ -156,14 +156,5 @@ class Iso3166
             $this->outputFile,
             $template
         );
-    }
-
-    public static function build(Event $event)
-    {
-        $vendor_dir = $event->getComposer()->getConfig()->get('vendor-dir');
-
-        require $vendor_dir . '/autoload.php';
-
-        (new self)->generate();
     }
 }

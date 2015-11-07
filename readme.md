@@ -80,11 +80,7 @@ class Example
 
 ## Building
 
-Composer will auto-generate `src/Iso3166.php` with the latest ISO3166 data after installation. Without Composer, you will need to build the source by running the following:
-
-```php
-(new \Tjbp\Countries\Build\Iso3166)->generate();
-```
+Run `bin/build` if you wish to regenerate the library using the latest ISO3166 data (though the packaged source should be up-to-date).
 
 ## Contributing
 
