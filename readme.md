@@ -6,7 +6,9 @@ A PHP lib providing fast and lightweight utilities for ISO 3166 country data.
 
 Run the following within your project directory to install as a dependency:
 
-    composer require tjbp/countries
+```sh
+composer require tjbp/countries
+```
 
 ## Usage
 
@@ -78,11 +80,15 @@ class Example
 
 ## Building
 
-A new `src/Iso3166.php` can be built from source by running `bin/build`.
+Composer will auto-generate `src/Iso3166.php` with the latest ISO3166 data after installation. Without Composer, you will need to build the source by running the following:
+
+```php
+(new \Tjbp\Countries\Build\Iso3166)->generate();
+```
 
 ## Contributing
 
-Please ensure changes to the Iso3166 class are made to `src/templates/Iso3166.php`, since `src/Iso3166.php` will be overwritten when new versions are built.
+Changes to the Iso3166 class are made to `src/templates/Iso3166.php`, since `src/Iso3166.php` will be overwritten when new versions are built.
 
 ## Notes
 
