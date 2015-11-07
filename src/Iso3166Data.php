@@ -24,14 +24,14 @@ namespace Tjbp\Countries;
 use BadMethodCallException;
 use OutOfBoundsException;
 
-class Iso3166
+abstract class Iso3166Data
 {
     /**
      * Database of ISO 3166 data.
      *
      * @var array
      */
-    private static $countries = [
+    protected static $countries = [
         'AF' => [
             'name' => 'Afghanistan',
             'alpha2' => 'AF',
@@ -2041,121 +2041,4 @@ class Iso3166
         894 => 'ZM',
         716 => 'ZW',
     ];
-
-    /**
-     * Magic method to redirect calls to object methods towards static methods.
-     *
-     * @param string $method
-     * @param array $args
-     * @return array
-     */
-    public function __call($method, $args)
-    {
-        if (!method_exists($this, $method)) {
-            throw new BadMethodCallException;
-        }
-
-        return forward_static_call_array([static::class, $method], $args);
-    }
-
-    /**
-     * Returns true if code is a known identifier.
-     *
-     * @param mixed $code
-     * @return boolean
-     */
-    public static function exists($code)
-    {
-        try {
-            static::get($code);
-        } catch (OutOfBoundsException $e) {
-            return false;
-        }
-
-        return true;
-    }
-
-    /**
-     * Try all methods for a result.
-     *
-     * @param mixed $code
-     * @return array
-     */
-    public static function get($code)
-    {
-        try {
-            return static::getByAlpha2($code);
-        } catch (OutOfBoundsException $e) {
-            try {
-                return static::getByAlpha3($code);
-            } catch (OutOfBoundsException $e) {
-                try {
-                    return static::getByNumeric3($code);
-                } catch (OutOfBoundsException $e) {
-                    throw new OutOfBoundsException("The code \"{$code}\" is not listed in ISO 4217");
-                }
-            }
-        }
-    }
-
-    /**
-     * Find and return country by its alphabetic two-character identifier.
-     *
-     * @param string $alpha2
-     * @return array
-     */
-    public static function getByAlpha2($alpha2)
-    {
-        $alpha2 = strtoupper($alpha2);
-
-        if (!isset(static::$countries[$alpha2])) {
-            throw new OutOfBoundsException("The 2 character alpha code \"$alpha2\" is not listed in ISO 3166");
-        }
-
-        return new Country(static::$countries[$alpha2]);
-    }
-
-    /**
-     * Find and return country by its alphabetic three-character identifier.
-     *
-     * @param string $alpha3
-     * @return array
-     */
-    public static function getByAlpha3($alpha3)
-    {
-        $alpha3 = strtoupper($alpha3);
-
-        if (!isset(static::$alpha3Index[$alpha3])) {
-            throw new OutOfBoundsException("The 3 character alpha code \"$alpha3\" is not listed in ISO 3166");
-        }
-
-        return new Country(static::$countries[static::$alpha3Index[$alpha3]]);
-    }
-
-    /**
-     * Find and return country by its numeric three-character identifier.
-     *
-     * @param string $numeric3
-     * @return array
-     */
-    public static function getByNumeric3($numeric3)
-    {
-        $numeric3 = strtoupper($numeric3);
-
-        if (!isset(static::$numeric3Index[$numeric3])) {
-            throw new OutOfBoundsException("The 3 character numeric code \"$numeric3\" is not listed in ISO 3166");
-        }
-
-        return new Country(static::$countries[static::$numeric3Index[$numeric3]]);
-    }
-
-    /**
-     * Return all countries as a numerically-keyed array.
-     *
-     * @return array
-     */
-    public static function all()
-    {
-        return array_values(static::$countries);
-    }
 }
