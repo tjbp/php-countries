@@ -1,0 +1,20 @@
+{
+    "name": "tjbp/countries",
+    "description": "Fast and lightweight utilities for ISO 3166 country data.",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Tom Pitcher",
+            "email": "github.com@tjbp.net"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Tjbp\\Countries\\": "src/"
+        }
+    },
+    "require-dev": {
+        "riimu/kit-phpencoder": "^2.1",
+        "phpunit/phpunit": "^4.8"
+    }
+}
