@@ -21,9 +21,6 @@ along with tjbp/countries.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace Tjbp\Countries;
 
-use BadMethodCallException;
-use OutOfBoundsException;
-
 abstract class Iso3166Data
 {
     /**
@@ -1533,7 +1530,7 @@ abstract class Iso3166Data
      *
      * @var array
      */
-    private static $alpha3Index = [
+    protected static $alpha3Index = [
         'AFG' => 'AF',
         'ALA' => 'AX',
         'ALB' => 'AL',
@@ -1790,7 +1787,7 @@ abstract class Iso3166Data
      *
      * @var array
      */
-    private static $numeric3Index = [
+    protected static $numeric3Index = [
         '004' => 'AF',
         248 => 'AX',
         '008' => 'AL',
