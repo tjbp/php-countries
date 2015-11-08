@@ -140,6 +140,12 @@ class Iso3166 extends Iso3166Data
      */
     public static function all()
     {
-        return array_values(static::$countries);
+        $countries = array_values(static::$countries);
+
+        array_walk($countries, function (&$value) {
+            $value = new Country($value);
+        });
+
+        return $countries;
     }
 }
